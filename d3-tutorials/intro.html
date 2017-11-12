@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Tutorial 1</title>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<style>
+
+</style>
+</head>
+<body>
+
+<script>
+var votes = [
+  {red: 10, blue: 12, other: 3 }
+]
+
+var stack = d3.stack()
+  .keys(["blue", "other", "red"])
+
+var stacked = stack(votes);
+
+var height = 50;
+var width = 600;
+
+// we need to calculate the maximum y-value
+// across all our layers, so we find the biggest
+// end value
+var maxX = d3.max(stacked, function(d) {
+  return d3.sum(d, function(d) {
+    return d[1];
+  });
+});
+
+var y = d3.scaleLinear()
+  .range([width, 0])
+  .domain([0, maxX]);
+
+var svg = d3.select('body').append('svg').attr("width", width);
+
+
+// bind a <g> tag for each layer
+var layers = svg.selectAll('g.layer')
+  .data(stacked, function(d) { return d.key; })
+    .enter()
+      .append('g')
+        .attr('class', 'layer')
+        .attr('fill', function(d) {
+          console.log(d)
+          return colors[d.key];
+        })
+
+// bind a <rect> to each value inside the layer
+layers.selectAll('rect')
+  .data(function(d) { return d; })
+  .enter()
+    .append('rect')
+      .attr('y', 0)
+      .attr('height', height)
+      .attr('x', function(d) {
+        // remember that SVG is y-down while our graph is y-up!
+        // here, we set the top-left of this bar segment to the
+        // larger value of the pair
+        return y(d[1]);
+      })
+      .attr("width", 0)
+      .transition()
+      .duration(1000)
+      .attr('width', function(d) {
+        // since we are drawing our bar from the top downwards,
+        // the length of the bar is the distance between our points
+        return y(d[0]) - y(d[1]);
+      });
+
+</script>
+</body>
+</html>
