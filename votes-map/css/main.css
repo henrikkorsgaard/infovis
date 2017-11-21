@@ -1,0 +1,25 @@
+html, body {
+  width:100%;
+  min-width: 800px;
+  margin:0px auto;
+  overflow-x:hidden;
+  background:#2e3037;
+}
+
+.slide {
+  margin:0px auto;
+  height:600px;
+  width:100%;
+  background:#2e3037;
+  text-align: center;
+}
+
+#slide_1 .infovis{
+  vertical-align: top;
+  margin:10px auto;
+  display:inline-block;
+  width:500px;
+  height:500px;
+  font-family:"Lato", sans-serif;
+  font-weight: lighter;
+}

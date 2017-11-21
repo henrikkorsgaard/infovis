@@ -52,7 +52,7 @@ dataset.Dimension("OMRÅDE").Category().forEach((el)=>{
       var other = dataset.Data({"OMRÅDE": key, "VALRES": "GSEJR"}).value
       area.other = s + other
 
-      area.parties = {}
+      area.parties = 
       area.parties.a = a;
       area.parties.b = b;
       area.parties.f = f;
