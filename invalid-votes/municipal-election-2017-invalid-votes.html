@@ -4,15 +4,49 @@
 <!-- <title>Kommunevalg 2017 - Ugyldige stemmer</title> -->
 <script src="./js/d3.min.js"></script>
 <script src="./data/kvres-2017-data.js"></script>
-<script src="./js/invalid-votes.js"></script>
+<!--<script src="./js/invalid-votes.js"></script>-->
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Lato|Vollkorn" rel="stylesheet">
 <style>
-.visualisation {
-  width:80%;
+
+body,html {
+  margin:0px auto;
+  background:black;
+  width:100%;
+  height:100%;
+  color:white;
+  font-family:'Vollkorn', serif;
+
 }
 
-#percentbar {
-  height:50px;
+.slide {
+  margin:0 auto;
+  width:100%;
+  height:100%;
 }
+
+.slide .content {
+  text-align:center;
+  width:100%;
+  background: rgba(0,0,0,0.5);;
+}
+
+.slide .content h1 {
+  margin:0px;
+  font-family:'Vollkorn', serif;
+  font-size: 500%;
+  vertical-align: middle;
+}
+
+#slide1 {
+  padding-top: 25%;
+  background:url('images/stemmeboks.jpg') 50% 0 no-repeat fixed;
+  background-size: cover;
+}
+
+h1 {
+  font-family:'Lato', sans-serif;
+}
+
 
 
 #barchart {
@@ -21,11 +55,28 @@
 </style>
 </head>
 <body>
-<h1>Narrative</h1>
+<div class="slide" id="slide1">
+  <div class="content">
+    <h1>De ugyldige stemmer....</h1>
+  </div>
+</div>
+<div class="slide" id="slide2">Det er valgtid - vi går op i resultatet</div>
+<div class="slide" id="slide3">Folketingsvalg diagram OG kommunevalg danmarkskort</div>
+<div class="slide" id="slide4">Men hver gang vi stemmer er der en gruppe af stemmer der bliver kasseret</div>
+<div class="slide" id="slide5">Antal indbyggere, stemmeberettigede ft og kommunalvalg</div>
+<div class="slide" id="slide6">antal stemmer, antal brevstemmer, antal personlige stemmer</div>
+<div class="slide" id="slide7">ugyldige stemmer</div>
+<div class="slide" id="slide8">ugyldige detaljer</div>
+<div class="slide" id="slide8">ugyldige koordinated views (map+tal)</div>
+
+<!--
+<div id="title">De ugyldige stemmer</div>
+<img src="images/stemmeboks.jpg">
+<h1>The invalid votes</h1>
 <p>It's election time and soon we will fancy visualisations of projections and later results. We get to see simple bar visualisations showing who is leading and how the votes are distributed between the main two political blocks.</p>
 
 <div class="visualisation" id="percentbar"></div>
-<br />
+
 <div class="visualisation" id="barchart"></div>
 
 <p>Another common visualisation is to show the results on a map indicating which block won which municipality.</p>
@@ -40,7 +91,7 @@ Figure out how to compine
 <div class="visualisation" id="barchart"></div>
 <div class="visualisation" id="map"></div>
 -->
-
+<!--
 <p>But there is a group of votes that we rarely look at. At every election a few of the votes are categorised as invalid. These are votes that represent citizens moving to their local school, elder centre, city hall to cast their vote, but for various reasons the votes end up not counting.</p>
 
 <p>At the 2013 municipality elections almost two thirds of the population were elligle
@@ -50,6 +101,6 @@ Figure out how to compine
 
 <vis>Who won in our municipality</vis>
 <vis>Who won </vis>
-
+-->
 </body>
 </html>

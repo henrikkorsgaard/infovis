@@ -1,7 +1,7 @@
 var colors = {}
-colors.red = "#b35806"
-colors.blue ="#542788"
-colors.others = "#fee0b6"
+colors.red = "#d7191c"
+colors.blue ="#2c7bb6"
+colors.others = "#fdae61"
 
 document.addEventListener("DOMContentLoaded", function() {
   bootstrap()
@@ -29,8 +29,6 @@ function visualiseBarChart(area){
   var max = d3.max(votes, function(d) {
       return d.votes+1000000;
   });
-  console.log(votes)
-  console.log(max)
 
   var x = d3.scaleLinear()
       .range([0, width])
@@ -48,13 +46,12 @@ function visualiseBarChart(area){
       .attr("y", (d, i)=>{
         return i*(height/3);
       })
+
       .attr("height", height/3-10)
       .attr("width", 0)
       .transition()
       .duration(1000)
-
       .attr("width", (d)=>{
-        console.log(x(d.votes))
         return x(d.votes);
       })
       .attr("fill",(d)=>{
@@ -71,14 +68,12 @@ function visualiseBlockBar(area){
 
     var votes = getBlockVotes(area)
     var stackVotes = []
+    var texts = {red:"Rød blok",blue:"Blå blok",others:"Andre"}
     obj = {}
     votes.forEach((el)=>{
       obj[el.block] = el.votes
     });
     stackVotes.push(obj)
-
-
-    console.log(stackVotes)
 
     var stack = d3.stack()
         .keys(["blue", "others", "red"])
@@ -107,8 +102,7 @@ function visualiseBlockBar(area){
               .attr('class', 'layer')
               .attr('fill', function(d) {
                 return colors[d.key];
-              });
-
+              })
               // bind a <rect> to each value inside the layer
       layers.selectAll('rect')
         .data(function(d) { return d; })
@@ -117,10 +111,15 @@ function visualiseBlockBar(area){
               .attr('y', 0)
               .attr('height', height)
               .attr('x', function(d) {
-
                   return x(d[1]);
               })
               .attr("width", 0)
+              .on("mouseover",function(d){
+                console.log(this)
+              })
+              .on("mouseout",function(d){
+                console.log(this)
+              })
     } else {
       svg = d3.select(bar).select("svg")
     }
@@ -165,7 +164,7 @@ function loadJSON(callback) {
    }
 
    var votes = [
-     {block: "red", votes:area.red},{block: "blue", votes:area.blue},{block: "others", votes:area.others}
+     {block: "red", votes:area.red, text:"Rød blok"},{block: "blue", votes:area.blue, text:"Blå blok"},{block: "others", votes:area.others,text:"Andre"}
    ]
 
    return votes
